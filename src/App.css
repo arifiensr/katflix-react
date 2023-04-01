@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@400;500&family=Work+Sans:wght@400;500&display=swap');
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -95,6 +97,8 @@ button {
 }
 
 .logo {
+  display: flex;
+  align-items: center;
   font-size: 1.5rem;
   font-weight: 700;
   cursor: pointer;
@@ -102,10 +106,15 @@ button {
 
 .bxs-cat {
   color: var(--color-cream-);
+  margin-left: 5px;
 }
 
 .logo-kat {
   color: var(--color-cream-);
+}
+
+.cat-logo {
+  margin-left: 2px;
 }
 
 .nav-links {
