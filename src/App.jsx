@@ -7,8 +7,10 @@ import BootstrapAlert from './components/BootstrapAlert'
 import LargeCard from './components/LargeCard'
 import SmallCard from './components/SmallCard'
 import Footer from './components/Footer'
+import Contact from './pages/Contact'
 
 function App() {
+
   return (
     <>
       <Nav />
@@ -19,6 +21,7 @@ function App() {
         <SmallCard />
       </div>
       <Footer />
+      {/* <Contact/> */}
     </>
   )
 }

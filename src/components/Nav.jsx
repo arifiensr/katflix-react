@@ -1,4 +1,6 @@
 import { useEffect } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import Contact from '../pages/Contact'
 
 function Nav() {
   useEffect(() => {
@@ -25,21 +27,19 @@ function Nav() {
           </div>
           <ul className="nav-links">
             <li>
-              <a href="index.html" className="active">
-                Home
-              </a>
+              <NavLink to="/katflix-react" exact={true}>Home</NavLink>
             </li>
             <li>
-              <a href="#">TV Series</a>
+              <NavLink to="/katflix-react/tvseries">TV Series</NavLink>
             </li>
             <li>
-              <a href="#">Movies</a>
+              <NavLink to="/katflix-react/movies">Movies</NavLink>
             </li>
             <li>
-              <a href="#">Genre</a>
+              <NavLink to="/katflix-react/genre">Genre</NavLink>
             </li>
             <li>
-              <a href="contact.html">Contact Us</a>
+              <NavLink to="/katflix-react/contact">Contact Us</NavLink>
             </li>
           </ul>
           <button type="button" className="nav-btn">
@@ -51,21 +51,19 @@ function Nav() {
         </nav>
         <div id="dropdown_menu" className="dropdown_menu">
           <li>
-            <a href="index.html" className="active">
-              Home
-            </a>
+            <NavLink to="/katflix-react">Home</NavLink>
           </li>
           <li>
-            <a href="#">TV Series</a>
+            <NavLink to="/katflix-react/tvseries">TV Series</NavLink>
           </li>
           <li>
-            <a href="#">Movies</a>
+            <NavLink to="/katflix-react/movies">Movies</NavLink>
           </li>
           <li>
-            <a href="#">Genre</a>
+            <NavLink to="/katflix-react/genre">Genre</NavLink>
           </li>
           <li>
-            <a href="contact.html">Contact Us</a>
+            <NavLink to="/katflix-react/contact">Contact Us</NavLink>
           </li>
           <li>
             <button type="button" className="nav-btn">

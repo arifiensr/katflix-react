@@ -2,9 +2,75 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import Home from './pages/Home'
+import Contact from './pages/Contact'
+import Nav from './components/Nav'
+import TvSeries from './pages/TvSeries'
+import Movies from './pages/Movies'
+import Genre from './pages/Genre'
+
+const router = createBrowserRouter([
+  {
+    path: '/katflix-react/',
+    element: (
+      <>
+        <Home />
+      </>
+    ),
+    errorElement: (
+      <>
+        <Nav />
+        <h1>Page Not Found 404</h1>
+      </>
+    ),
+    children: [
+      {
+        path: '/katflix-react/',
+        element: (
+          <>
+            <h1>Ini Adalah Children Element Menggunakan Outlet</h1>
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    path: '/katflix-react/contact/',
+    element: (
+      <>
+        <Contact />
+      </>
+    ),
+  },
+  {
+    path: '/katflix-react/tvseries/',
+    element: (
+      <>
+        <TvSeries />
+      </>
+    ),
+  },
+  {
+    path: '/katflix-react/movies/',
+    element: (
+      <>
+        <Movies />
+      </>
+    ),
+  },
+  {
+    path: '/katflix-react/genre/',
+    element: (
+      <>
+        <Genre />
+      </>
+    ),
+  },
+])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 )
