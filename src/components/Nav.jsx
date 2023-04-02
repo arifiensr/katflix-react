@@ -1,10 +1,27 @@
+import { useEffect } from 'react'
+
 function Nav() {
+  useEffect(() => {
+    // * Membuat toggle untuk dropdown menu
+
+    const toggleBtn = document.getElementById('toggle-btn')
+    const toggleBtnIcon = toggleBtn.getElementsByClassName('bx')
+    const dropDownMenu = document.getElementById('dropdown_menu')
+
+    toggleBtn.onclick = () => {
+      dropDownMenu.classList.toggle('open')
+      const isOpen = dropDownMenu.classList.contains('open')
+
+      toggleBtnIcon[0].classList = isOpen ? 'bx bx-x' : 'bx bx-menu'
+    }
+  }, [])
+
   return (
     <>
       <header>
         <nav className="header-nav">
           <div className="logo">
-            <span className="logo-kat">KAT</span>FLIX <i class="bx bxs-cat bx-fade-left cat-logo"></i>
+            <span className="logo-kat">KAT</span>FLIX <i className="bx bxs-cat bx-fade-left cat-logo"></i>
           </div>
           <ul className="nav-links">
             <li>
