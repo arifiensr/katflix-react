@@ -358,7 +358,7 @@ li a:hover {
   padding: 5px 0;
 }
 
-.card .details .rating .fa-star {
+.card .details .rating .bx {
   color: #f7f406;
   font-size: 1em;
 }
@@ -543,7 +543,8 @@ li a:hover {
   padding: 5px 0;
 }
 
-.modal-desc .rating .fa-star {
+.modal-desc .rating .bx {
+  letter-spacing: 3px;
   color: #f7f406;
   font-size: 1em;
 }
