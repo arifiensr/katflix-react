@@ -1,4 +1,18 @@
+import { useEffect, useState } from 'react'
+import tmdb from '../api/tmdb'
+
 function LargeCard() {
+  const [movie, setMovies] = useState([])
+
+  useEffect(() => {
+    // fetching action
+    const fetchMovies = async() => {
+      const {data} = await tmdb.get("tv/popular")
+      setMovies(data.results)
+    }
+
+    fetchMovies()
+  }, [])
   return (
     <>
       <div className="d-flex justify-content-between align-items-center p-4 pb-0 mb-0">
