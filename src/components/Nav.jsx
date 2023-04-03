@@ -27,19 +27,19 @@ function Nav() {
           </div>
           <ul className="nav-links">
             <li>
-              <NavLink to="/katflix-react" exact={true}>Home</NavLink>
+              <NavLink to="/" exact={true}>Home</NavLink>
             </li>
             <li>
-              <NavLink to="/katflix-react/tvseries">TV Series</NavLink>
+              <NavLink to="/tvseries/" exact={true}>TV Series</NavLink>
             </li>
             <li>
-              <NavLink to="/katflix-react/movies">Movies</NavLink>
+              <NavLink to="/movies/">Movies</NavLink>
             </li>
             <li>
-              <NavLink to="/katflix-react/genre">Genre</NavLink>
+              <NavLink to="/genre/">Genre</NavLink>
             </li>
             <li>
-              <NavLink to="/katflix-react/contact">Contact Us</NavLink>
+              <NavLink to="/contact/">Contact Us</NavLink>
             </li>
           </ul>
           <button type="button" className="nav-btn">
