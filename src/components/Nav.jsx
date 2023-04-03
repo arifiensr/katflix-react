@@ -23,14 +23,16 @@ function Nav() {
       <header>
         <nav className="header-nav">
           <div className="logo">
-            <span className="logo-kat">KAT</span>FLIX <i className="bx bxs-cat bx-fade-left cat-logo"></i>
+            <NavLink to="/">
+              <span className="logo-kat">KAT</span>FLIX <i className="bx bxs-cat bx-fade-left cat-logo"></i>
+            </NavLink>
           </div>
           <ul className="nav-links">
             <li>
-              <NavLink to="/" exact={true}>Home</NavLink>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/tvseries/" exact={true}>TV Series</NavLink>
+              <NavLink to="/tvseries/">TV Series</NavLink>
             </li>
             <li>
               <NavLink to="/movies/">Movies</NavLink>
@@ -51,19 +53,19 @@ function Nav() {
         </nav>
         <div id="dropdown_menu" className="dropdown_menu">
           <li>
-            <NavLink to="/katflix-react">Home</NavLink>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <NavLink to="/katflix-react/tvseries">TV Series</NavLink>
+            <NavLink to="/tvseries/">TV Series</NavLink>
           </li>
           <li>
-            <NavLink to="/katflix-react/movies">Movies</NavLink>
+            <NavLink to="/movies/">Movies</NavLink>
           </li>
           <li>
-            <NavLink to="/katflix-react/genre">Genre</NavLink>
+            <NavLink to="/genre/">Genre</NavLink>
           </li>
           <li>
-            <NavLink to="/katflix-react/contact">Contact Us</NavLink>
+            <NavLink to="/contact/">Contact Us</NavLink>
           </li>
           <li>
             <button type="button" className="nav-btn">

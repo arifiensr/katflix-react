@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     errorElement: (
       <>
         <Nav />
-        <h1>Page Not Found 404</h1>
+        <h1 className='mt-5'>Page Not Found 404</h1>
       </>
     ),
     children: [
@@ -35,6 +35,16 @@ const router = createBrowserRouter([
       },
     ],
   },
+
+  {
+    path: '/katflix-react/',
+    element: (
+      <>
+        <Home />
+      </>
+    ),
+  },
+
   {
     path: '/contact/',
     element: (
@@ -43,6 +53,7 @@ const router = createBrowserRouter([
       </>
     ),
   },
+
   {
     path: '/tvseries/',
     element: (
@@ -51,6 +62,7 @@ const router = createBrowserRouter([
       </>
     ),
   },
+
   {
     path: '/movies/',
     element: (
@@ -59,6 +71,7 @@ const router = createBrowserRouter([
       </>
     ),
   },
+
   {
     path: '/genre/',
     element: (
