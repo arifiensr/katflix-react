@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import tmdb from '../api/tmdb'
+// import tmdb from '../api/tmdb'
 
 function LargeCard() {
   const [movie, setMovies] = useState([])

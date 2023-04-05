@@ -13,7 +13,7 @@ function Home() {
       <Carousel />
       <BootstrapAlert />
       <div className="main-content mb-4">
-        <LargeCard />
+        <LargeCardTest />
         <SmallCard />
       </div>
       <Footer />
