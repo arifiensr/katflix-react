@@ -3,21 +3,21 @@ import tmdb from '../api/tmdb'
 
 function PopularMovies() {
   const [popularMovies, setPopularMovies] = useState([])
-  // const [popularMoviesId, setPopularMoviesId] = useState([])
-
-  const [directors, setDirectors] = useState([])
-
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
-
-  const getDirector = async (movieId) => {
-    const { data } = await tmdb.get(`movie/${movieId}/credits`)
-    // return data.crew.filter((crew) => crew.job === 'Director')[0].name
-    setDirectors(data.crew.filter((crew) => crew.job === 'Director')[0].name)
-  }
+  const baseImgUrlHd = import.meta.env.VITE_TMDB_BASEIMGURLHD
 
   const getPopularMovies = async () => {
-    const { data } = await tmdb.get('movie/popular')
-    setPopularMovies(data.results)
+    const popular = await tmdb.get('movie/popular')
+    const combines = popular.data.results.map(async (movie, i) => {
+      const movieDatas = await tmdb.get(`movie/${movie.id}`, { params: { append_to_response: 'credits' } })
+      const movieVideos = await tmdb.get(`movie/${movie.id}/videos`)
+      movie = movieDatas.data
+      movie.director = movieDatas.data.credits.crew.filter((crew) => crew.job === 'Director')[0].name
+      movie.trailer = movieVideos.data.results.filter((video) => video.type === 'Trailer')[0]
+      return movie
+    })
+    let results = await Promise.all(combines)
+    setPopularMovies(results)
   }
 
   useEffect(() => {
@@ -27,28 +27,31 @@ function PopularMovies() {
   return (
     <>
       {popularMovies.slice(0, 5).map((movie, i) => {
-        
+        const ratingStars = [1, 2, 3, 4, 5]
+        const headerStyle = {
+          backgroundImage: `linear-gradient(to bottom, rgba(255, 0, 0, 0) 50%, var(--color-grey-) 100%), url('${baseImgUrlHd}${movie.backdrop_path}')`
+        }
         return (
           <div key={i}>
             <div className="card-lg-1">
-              <div className="card bg-dark" data-bs-toggle="modal" data-bs-target="#firstCardModal">
+              <div className="card bg-dark" data-bs-toggle="modal" data-bs-target={`#cardModal${i}`}>
                 <div className="poster">
                   <img src={`${baseImgUrl}${movie.poster_path}`} alt="" />
                 </div>
                 <div className="details">
                   <h2 className="title">{movie.original_title}</h2>
-                  <h3>Directed by </h3>
+                  <h3>Directed by {movie.director}</h3>
                   <div className="rating">
-                    <i className="bx bxs-star"></i>
-                    <i className="bx bxs-star"></i>
-                    <i className="bx bxs-star"></i>
-                    <i className="bx bxs-star"></i>
-                    <i className="bx bx-star"></i>
-                    <span>4.4/5</span>
+                    {ratingStars.map((star) => {
+                      if (star <= Math.round(movie.vote_average / 2)) return <i className="bx bxs-star"></i>
+                      else return <i className="bx bx-star"></i>
+                    })}
+                    <span>{(movie.vote_average / 2).toFixed(1)}/5</span>
                   </div>
-                  <div className="tags">
-                    <span>Biography</span>
-                    <span>History</span>
+                  <div className="tags d-flex gap-1">
+                    {movie.genres.slice(0, 2).map((genre, i) => {
+                      return <span key={i}>{genre.name}</span>
+                    })}
                   </div>
                   <div className="info">
                     <p>{movie.overview.length > 200 ? movie.overview.slice(0, 200) + '...' : movie.overview}</p>
@@ -56,79 +59,65 @@ function PopularMovies() {
                   <div className="cast">
                     <h5>Cast</h5>
                     <ul>
-                      <li>
-                        <img src="https://resizing.flixster.com/CMGjyD6T4AKWQS0xRvDVRFDLgKw=/100x120/v2/https://flxt.tmsimg.com/assets/1209177_v9_ba.jpg" alt="" />
-                      </li>
-                      <li>
-                        <img src="https://resizing.flixster.com/7CpysI8tPX8_KRX7gcUw4lUJ1Ww=/100x120/v2/https://flxt.tmsimg.com/assets/990775_v9_ba.jpg" alt="" />
-                      </li>
-                      <li>
-                        <img src="https://resizing.flixster.com/ezusSZefDi6BBrFB3c-_EpcvZfA=/100x120/v2/https://flxt.tmsimg.com/assets/578793_v9_bc.jpg" alt="" />
-                      </li>
-                      <li>
-                        <img src="https://resizing.flixster.com/aY7Den7anAtS88cMH_4NtQMZfx8=/100x120/v2/https://flxt.tmsimg.com/assets/707096_v9_bb.jpg" alt="" />
-                      </li>
-                      <li>
-                        <img src="https://resizing.flixster.com/x5nBcfsxNQHi0oGDJmtQaiBmcmo=/100x120/v2/https://flxt.tmsimg.com/assets/72287_v9_bb.jpg" alt="" />
-                      </li>
+                      {movie.credits.cast.slice(0, 5).map((cast, i) => {
+                        if (cast.profile_path !== null)
+                          return (
+                            <li key={i}>
+                              <img src={`${baseImgUrl}${cast.profile_path}`} alt="" />
+                            </li>
+                          )
+                      })}
                     </ul>
                   </div>
                 </div>
               </div>
               {/* <!-- Modal --> */}
-              <div className="modal fade z-14 modal-xl" id="firstCardModal" tabIndex="-1" aria-labelledby="firstCardModalLabel" aria-hidden="true">
+              <div className="modal fade z-14 modal-xl" id={`cardModal${i}`} tabIndex="-1" aria-labelledby={`cardModalLabel${i}`} aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                   <div className="modal-content">
-                    <div className="modal-header modal-header-img-1">
+                    <div className="modal-header" style={headerStyle}>
                       <div className="modal-close-button" data-bs-dismiss="modal" aria-label="Close">
                         <i className="bx bx-x"></i>
                       </div>
                     </div>
                     <div className="modal-body d-flex align-items-start">
                       <div className="modal-poster">
-                        <img src="https://resizing.flixster.com/SKYj-nTZxPCuA0S2CYE-SrlHhhw=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzL2Y5MjdmYjM4LWM0MjItNDI1OC04ODY0LTU1NDc4NmRlMzdhNi5qcGc=" alt="" />
+                        <img src={`${baseImgUrl}${movie.poster_path}`} alt="" />
                       </div>
                       <div className="modal-desc">
                         <h2 className="title">{movie.original_title}</h2>
                         <h3>Directed by {movie.director}</h3>
                         <div className="rating">
-                          <i className="bx bxs-star"></i>
-                          <i className="bx bxs-star"></i>
-                          <i className="bx bxs-star"></i>
-                          <i className="bx bxs-star"></i>
-                          <i className="bx bx-star"></i>
-                          <span>4.4/5</span>
+                          {ratingStars.map((star) => {
+                            if (star <= Math.round(movie.vote_average / 2)) return <i className="bx bxs-star"></i>
+                            else return <i className="bx bx-star"></i>
+                          })}
+                          <span>{(movie.vote_average / 2).toFixed(1)}/5</span>
                         </div>
-                        <div className="tags">
-                          <span>Biography</span>
-                          <span>History</span>
+                        <div className="tags d-flex gap-1">
+                          {movie.genres.slice(0, 2).map((genre, i) => {
+                            return <span key={i}>{genre.name}</span>
+                          })}
                         </div>
                         <div className="info">
-                          <p>EMILY imagines Emily Brontë's own Gothic story that inspired her seminal novel, "Wuthering Heights." Haunted by the death of her mother, Emily struggles within the confines of her family life and yearns for artistic and personal freedom, and so begins a journey to channel her creative potential into one of the greatest novels of all time.</p>
+                          <p>{movie.overview}</p>
                         </div>
                         <div className="cast-trailer">
                           <div className="cast">
                             <h5>Cast</h5>
                             <ul>
-                              <li>
-                                <img src="https://resizing.flixster.com/CMGjyD6T4AKWQS0xRvDVRFDLgKw=/100x120/v2/https://flxt.tmsimg.com/assets/1209177_v9_ba.jpg" alt="" />
-                              </li>
-                              <li>
-                                <img src="https://resizing.flixster.com/7CpysI8tPX8_KRX7gcUw4lUJ1Ww=/100x120/v2/https://flxt.tmsimg.com/assets/990775_v9_ba.jpg" alt="" />
-                              </li>
-                              <li>
-                                <img src="https://resizing.flixster.com/ezusSZefDi6BBrFB3c-_EpcvZfA=/100x120/v2/https://flxt.tmsimg.com/assets/578793_v9_bc.jpg" alt="" />
-                              </li>
-                              <li>
-                                <img src="https://resizing.flixster.com/aY7Den7anAtS88cMH_4NtQMZfx8=/100x120/v2/https://flxt.tmsimg.com/assets/707096_v9_bb.jpg" alt="" />
-                              </li>
-                              <li>
-                                <img src="https://resizing.flixster.com/x5nBcfsxNQHi0oGDJmtQaiBmcmo=/100x120/v2/https://flxt.tmsimg.com/assets/72287_v9_bb.jpg" alt="" />
-                              </li>
+                              {movie.credits.cast.slice(0, 5).map((cast, i) => {
+                                if (cast.profile_path !== null)
+                                  return (
+                                    <li key={i}>
+                                      <img src={`${baseImgUrl}${cast.profile_path}`} alt="" />
+                                    </li>
+                                  )
+                              })}
                             </ul>
                           </div>
                           <div className="btn-modal">
-                            <button type="button" className="modal-button modal-button-1" onClick={() => window.open('https://www.youtube.com/watch?v=xaL90sMAzbY')}>
+                            <button type="button" className="modal-button modal-button-1" onClick={() => window.open(`https://www.youtube.com/watch?v=${movie.trailer.key}`)}>
                               Watch Trailer
                             </button>
                             <button type="button" className="modal-button modal-button-2">
