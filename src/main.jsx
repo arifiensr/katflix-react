@@ -13,7 +13,7 @@ import './index.css'
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/katflix-react/',
     element: (
       <>
         <Home />
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: '/',
+        path: '/katflix-react/',
         element: (
           <>
             <h1>Ini Adalah Children Element Menggunakan Outlet</h1>
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/contact/',
+    path: '/katflix-react/contact/',
     element: (
       <>
         <Contact />
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/tvseries/',
+    path: '/katflix-react/tvseries/',
     element: (
       <>
         <TvSeries />
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/movies/',
+    path: '/katflix-react/movies/',
     element: (
       <>
         <Movies />
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/genre/',
+    path: '/katflix-react/genre/',
     element: (
       <>
         <Genre />

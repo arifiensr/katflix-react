@@ -29,19 +29,19 @@ function Nav() {
           </div>
           <ul className="nav-links">
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/katflix-react/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/tvseries/">TV Series</NavLink>
+              <NavLink to="/katflix-react/tvseries/">TV Series</NavLink>
             </li>
             <li>
-              <NavLink to="/movies/">Movies</NavLink>
+              <NavLink to="/katflix-react/movies/">Movies</NavLink>
             </li>
             <li>
-              <NavLink to="/genre/">Genre</NavLink>
+              <NavLink to="/katflix-react/genre/">Genre</NavLink>
             </li>
             <li>
-              <NavLink to="/contact/">Contact Us</NavLink>
+              <NavLink to="/katflix-react/contact/">Contact Us</NavLink>
             </li>
           </ul>
           {/* <button type="button" className="nav-btn">
@@ -56,19 +56,19 @@ function Nav() {
         </nav>
         <div id="dropdown_menu" className="dropdown_menu">
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/katflix-react/">Home</NavLink>
           </li>
           <li>
-            <NavLink to="/tvseries/">TV Series</NavLink>
+            <NavLink to="/katflix-react/tvseries/">TV Series</NavLink>
           </li>
           <li>
-            <NavLink to="/movies/">Movies</NavLink>
+            <NavLink to="/katflix-react/movies/">Movies</NavLink>
           </li>
           <li>
-            <NavLink to="/genre/">Genre</NavLink>
+            <NavLink to="/katflix-react/genre/">Genre</NavLink>
           </li>
           <li>
-            <NavLink to="/contact/">Contact Us</NavLink>
+            <NavLink to="/katflix-react/contact/">Contact Us</NavLink>
           </li>
           <li>
             {/* <button type="button" className="nav-btn">
