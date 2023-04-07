@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import Contact from '../pages/Contact'
+import SignInModal from './SignInModal'
 
 function Nav() {
   useEffect(() => {
@@ -44,9 +44,12 @@ function Nav() {
               <NavLink to="/contact/">Contact Us</NavLink>
             </li>
           </ul>
-          <button type="button" className="nav-btn">
+          {/* <button type="button" className="nav-btn">
             Watch Now!
-          </button>
+          </button> */}
+          <div className="signin" data-bs-toggle="modal" data-bs-target="#signInModal">
+            Sign In
+          </div>
           <div id="toggle-btn" className="toggle-btn">
             <i className="bx bx-menu"></i>
           </div>
@@ -68,12 +71,14 @@ function Nav() {
             <NavLink to="/contact/">Contact Us</NavLink>
           </li>
           <li>
-            <button type="button" className="nav-btn">
+            {/* <button type="button" className="nav-btn">
               Watch Now!
-            </button>
+            </button> */}
           </li>
         </div>
       </header>
+      
+      <SignInModal />
     </>
   )
 }

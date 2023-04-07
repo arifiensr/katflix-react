@@ -115,6 +115,10 @@ li a:hover {
   display: none;
 }
 
+.signin {
+  cursor: pointer;
+}
+
 /* * Dropdown Menu */
 
 .dropdown_menu {
@@ -453,6 +457,13 @@ li a:hover {
   right: 10px;
   font-size: 1.9rem;
   display: none;
+}
+
+.modal-signin-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.9rem;
 }
 
 .modal-body {
@@ -831,6 +842,30 @@ body > nav > ol > li.breadcrumb-item.active {
   --bs-breadcrumb-divider-color: var(--color-cream-);
 }
 
+/* * Card Test */
+
+/* .cradWrapper {
+  overflow-x: auto;
+}
+
+.cradWrapper::-webkit-scrollbar {
+  width: 0;
+} */
+
+.cardTest {
+  width: 185px;
+  height: 278px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.cardTest:hover {
+  scale: 1.05;
+}
+
 /* * Responsive Design */
 
 @media (max-width: 992px) {
@@ -924,6 +959,10 @@ body > nav > ol > li.breadcrumb-item.active {
   }
 
   .modal-close-button {
+    display: block;
+  }
+
+  .modal-signin-close-button {
     display: block;
   }
 

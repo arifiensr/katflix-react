@@ -38,15 +38,6 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/katflix-react/',
-    element: (
-      <>
-        <Home />
-      </>
-    ),
-  },
-
-  {
     path: '/contact/',
     element: (
       <>
