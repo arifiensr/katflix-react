@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
-import tmdb from '../api/tmdb'
+import tmdbApi from '../api/tmdbApi'
 
 function CardTest() {
   const [popularMovies, setPopularMovies] = useState([])
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
 
   const getPopularMovies = async () => {
-    const popular = await tmdb.get('movie/popular')
+    const popular = await tmdbApi.get('movie/popular')
     const combines = popular.data.results.map(async (movie, i) => {
-      const movieDatas = await tmdb.get(`movie/${movie.id}`, { params: { append_to_response: 'credits' } })
-      const movieVideos = await tmdb.get(`movie/${movie.id}/videos`)
+      const movieDatas = await tmdbApi.get(`movie/${movie.id}`, { params: { append_to_response: 'credits' } })
+      const movieVideos = await tmdbApi.get(`movie/${movie.id}/videos`)
       movie = movieDatas.data
       movie.director = movieDatas.data.credits.crew.filter((crew) => crew.job === 'Director')[0].name
       movie.trailer = movieVideos.data.results.filter((video) => video.type === 'Trailer')[0]

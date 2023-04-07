@@ -10,6 +10,7 @@ import Genre from './pages/Genre'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'boxicons/css/boxicons.min.css'
 import './index.css'
+import Login from './components/Login'
 
 const router = createBrowserRouter([
   {

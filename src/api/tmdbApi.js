@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const baseUrl = import.meta.env.VITE_TMDB_BASEURL
 const apiKey = import.meta.env.VITE_TMDB_APIKEY
+const token = import.meta.env.VITE_TMDB_TOKEN
 
 // export const getMovieList = async () => {
 //   const movie = await axios.get(`${baseUrl}/movie/popular?api_key=${apiKey}`)
