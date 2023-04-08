@@ -7,12 +7,12 @@ function SmallCard2() {
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
 
   const getPopularTVs = async () => {
-    const popularTV = await tmdbApi.get('tv/top_rated')
+    const popularTV = await tmdbApi.get('tv/popular')
     const combines = popularTV.data.results.map(async (movie, index) => {
-      const movieDatas = await tmdbApi.get(`movie/${movie.id}`, { params: { append_to_response: 'credits' } })
-      const movieVideos = await tmdbApi.get(`movie/${movie.id}/videos`)
+      const movieDatas = await tmdbApi.get(`tv/${movie.id}`, { params: { append_to_response: 'credits' } })
+      const movieVideos = await tmdbApi.get(`tv/${movie.id}/videos`)
       movie = movieDatas.data
-      movie.director = movieDatas.data.credits.crew.filter((crew) => crew.job === 'Director')[0].name
+      movie.director = movieDatas.data.credits.crew.filter((crew) => crew.job === 'Director')[0] === undefined ? 'James Bond' : movieDatas.data.credits.crew.filter((crew) => crew.job === 'Director')[0].name
       movie.trailer = movieVideos.data.results.filter((video) => video.type === 'Trailer')[0]
       return movie
     })
@@ -20,7 +20,7 @@ function SmallCard2() {
     setPopularTVs(results)
   }
 
-  console.log();
+  console.log(popularTVs)
 
   useEffect(() => {
     getPopularTVs()
