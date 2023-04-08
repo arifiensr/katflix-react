@@ -36,7 +36,7 @@ function PopularMovies() {
                   <img src={`${baseImgUrl}w500${movie.poster_path}`} alt="" />
                 </div>
                 <div className="details">
-                  <h2 className="title">{movie.original_title}</h2>
+                  <h2 className="title">{movie.title}</h2>
                   <h3>Directed by {movie.director}</h3>
                   <div className="rating">
                     {ratingStars.map((star, index) => {
