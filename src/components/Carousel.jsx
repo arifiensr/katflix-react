@@ -45,7 +45,7 @@ function Carousel() {
             }
             return (
               <div key={index}>
-                <div className="carousel-item active c-item" data-bs-toggle="modal" data-bs-target={`#movieModal${index}`}>
+                <div className="carousel-item active c-item" data-bs-toggle="modal" data-bs-target={`#modal${movie.id}`}>
                   <div className="c-img" style={style.carouselImage}></div>
                 </div>
                 <MovieModal movie={movie} index={index} />

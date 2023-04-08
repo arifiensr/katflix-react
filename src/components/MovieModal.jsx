@@ -7,7 +7,7 @@ function MovieModal({movie, index}) {
   }
   return (
     <>
-      <div className="modal fade z-14 modal-xl" id={`movieModal${index}`} tabIndex="-1" aria-labelledby={`movieModalLabel${index}`} aria-hidden="true">
+      <div className="modal fade z-14 modal-xl" id={`modal${movie.id}`} tabIndex="-1" aria-labelledby={`modalLabel${movie.id}`} aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
           <div className="modal-content">
             <div className="modal-header" style={headerStyle}>
@@ -20,7 +20,7 @@ function MovieModal({movie, index}) {
                 <img src={`${baseImgUrl}w342${movie.poster_path}`} alt="" />
               </div>
               <div className="modal-desc">
-                <h2 className="title">{movie.original_title}</h2>
+                <h2 className="title">{movie.original_title} <sup><em>(ID: {movie.id})</em></sup></h2>
                 <h3>Directed by {movie.director}</h3>
                 <div className="rating">
                   {ratingStars.map((star, index) => {

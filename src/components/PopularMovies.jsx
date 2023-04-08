@@ -31,7 +31,7 @@ function PopularMovies() {
         return (
           <div key={index}>
             <div className="card-lg-1">
-              <div className="card bg-dark" data-bs-toggle="modal" data-bs-target={`#movieModal${index}`}>
+              <div className="card bg-dark" data-bs-toggle="modal" data-bs-target={`#modal${movie.id}`}>
                 <div className="poster">
                   <img src={`${baseImgUrl}w500${movie.poster_path}`} alt="" />
                 </div>

@@ -44,12 +44,9 @@ function Nav() {
               <NavLink to="/katflix-react/contact/">Contact Us</NavLink>
             </li>
           </ul>
-          {/* <button type="button" className="nav-btn">
-            Watch Now!
-          </button> */}
-          <div className="signin" data-bs-toggle="modal" data-bs-target="#signInModal">
+          <button type="button" className="nav-btn" data-bs-toggle="modal" data-bs-target="#signInModal">
             Sign In
-          </div>
+          </button>
           <div id="toggle-btn" className="toggle-btn">
             <i className="bx bx-menu"></i>
           </div>
@@ -71,13 +68,13 @@ function Nav() {
             <NavLink to="/katflix-react/contact/">Contact Us</NavLink>
           </li>
           <li>
-            {/* <button type="button" className="nav-btn">
-              Watch Now!
-            </button> */}
+            <div className="signin" data-bs-toggle="modal" data-bs-target="#signInModal">
+              Sign In
+            </div>
           </li>
         </div>
       </header>
-      
+
       <SignInModal />
     </>
   )

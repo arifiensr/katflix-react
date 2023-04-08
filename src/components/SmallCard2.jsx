@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react'
 import tmdbApi from '../api/tmdbApi'
 import MovieModal from './MovieModal'
 
-function SmallCard() {
-  const [topRatedMovies, setTopRatedMovies] = useState([])
+function SmallCard2() {
+  const [popularTVs, setPopularTVs] = useState([])
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
 
-  const getTopRatedMovies = async () => {
-    const topRated = await tmdbApi.get('movie/top_rated')
-    const combines = topRated.data.results.map(async (movie, index) => {
+  const getPopularTVs = async () => {
+    const popularTV = await tmdbApi.get('tv/top_rated')
+    const combines = popularTV.data.results.map(async (movie, index) => {
       const movieDatas = await tmdbApi.get(`movie/${movie.id}`, { params: { append_to_response: 'credits' } })
       const movieVideos = await tmdbApi.get(`movie/${movie.id}/videos`)
       movie = movieDatas.data
@@ -17,25 +17,27 @@ function SmallCard() {
       return movie
     })
     let results = await Promise.all(combines)
-    setTopRatedMovies(results)
+    setPopularTVs(results)
   }
 
+  console.log();
+
   useEffect(() => {
-    getTopRatedMovies()
+    getPopularTVs()
   }, [])
   return (
     <>
       <div className="genre">
         <div className="d-flex justify-content-between align-items-center p-4 pb-0 mb-0">
           <h5>
-            <a href="#">Top Rated Movies</a>
+            <a href="#">Popular TV Series</a>
           </h5>
           <h5>
             <a href="#">More</a>
           </h5>
         </div>
         <div className="cardWrapper d-flex justify-content-around align-items-center flex-wrap ms-3 me-3 gap-3">
-          {topRatedMovies.slice(0, 18).map((movie, index) => {
+          {popularTVs.slice(0, 18).map((movie, index) => {
             return (
               <div key={index}>
                 {/* Card */}
@@ -55,4 +57,4 @@ function SmallCard() {
   )
 }
 
-export default SmallCard
+export default SmallCard2
