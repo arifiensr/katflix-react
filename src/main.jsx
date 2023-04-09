@@ -14,7 +14,7 @@ import Login from './components/Login'
 
 const router = createBrowserRouter([
   {
-    path: '/katflix-react/',
+    path: '/',
     element: (
       <>
         <Home />
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: '/katflix-react/',
+        path: '/',
         element: (
           <>
             <h1>Ini Adalah Children Element Menggunakan Outlet</h1>
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/katflix-react/contact/',
+    path: '/contact/',
     element: (
       <>
         <Contact />
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/katflix-react/tvseries/',
+    path: '/tvseries/',
     element: (
       <>
         <TvSeries />
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/katflix-react/movies/',
+    path: '/movies/',
     element: (
       <>
         <Movies />
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: '/katflix-react/genre/',
+    path: '/genre/',
     element: (
       <>
         <Genre />
