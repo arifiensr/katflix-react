@@ -5,9 +5,8 @@ import { useState, useEffect } from 'react'
 import { Link, redirect } from 'react-router-dom'
 
 function SignInModal() {
-  const [success, setSuccess] = useState(false)
+  const [authenticated, setAuthenticated] = useState(false)
   const [account, setAccount] = useState([])
-  const [authenticated, setAuthenticated] = useState()
 
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
   const apiKey = import.meta.env.VITE_TMDB_APIKEY
@@ -29,14 +28,17 @@ function SignInModal() {
         const accountData = await tmdbApi.get('account', { params: { session_id: sessionId.data.session_id } })
         setAccount(accountData.data)
         setAuthenticated(sessionId.data.session_id)
-        setSuccess(true)
+        localStorage.setItem('session_id', sessionId.data.session_id)
       } catch {
         alert('Login error!')
       }
     },
   })
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+
+    
+  }, [])
 
   return (
     <>
@@ -48,7 +50,7 @@ function SignInModal() {
                 <i className="bx bx-x"></i>
               </div>
               <div className="modal-desc">
-                {success ? (
+                {authenticated ? (
                   <>
                     <h1>Welcome!</h1>
                     <div>
@@ -58,11 +60,7 @@ function SignInModal() {
                       <h3>ID: {account.id}</h3>
                     </div>
                     <br />
-                    <p>
-                      <div onClick={() => window.location.reload()}>Go to Home</div>
-                      {/* <a href="/katflix-react/">Go to Home</a> */}
-                      {/* <Link to="/katflix-react/">Go to Home</Link> */}
-                    </p>
+                    <div onClick={() => window.location.reload()}>Go to Home</div>
                   </>
                 ) : (
                   <>

@@ -34,7 +34,6 @@ function Carousel() {
       <div id="movieCarousel" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-inner">
           {popularMovies.slice(0, 3).map((movie, index) => {
-            const ratingStars = [1, 2, 3, 4, 5]
             const style = {
               carouselImage: {
                 backgroundImage: `linear-gradient(to bottom, rgba(255, 0, 0, 0) 50%, var(--color-black-) 100%), url('${baseImgUrl}original${movie.backdrop_path}')`,

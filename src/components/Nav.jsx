@@ -1,8 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import SignInModal from './SignInModal'
 
 function Nav() {
+  const [authenticated, setAuthenticated] = useState()
+
   useEffect(() => {
     // * Membuat toggle untuk dropdown menu
 
@@ -16,6 +18,10 @@ function Nav() {
 
       toggleBtnIcon[0].classList = isOpen ? 'bx bx-x' : 'bx bx-menu'
     }
+
+    const authenticate = localStorage.getItem('session_id')
+    if (authenticate) setAuthenticated(authenticate)
+    console.log(`Session ID: ${authenticate}`)
   }, [])
 
   return (

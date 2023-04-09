@@ -17,10 +17,9 @@ function SmallCard2() {
       return movie
     })
     let results = await Promise.all(combines)
+    
     setPopularTVs(results)
   }
-
-  console.log(popularTVs)
 
   useEffect(() => {
     getPopularTVs()
@@ -51,8 +50,6 @@ function SmallCard2() {
           })}
         </div>
       </div>
-
-      {/* Modal */}
     </>
   )
 }
