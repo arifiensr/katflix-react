@@ -119,6 +119,10 @@ li a:hover {
   cursor: pointer;
 }
 
+.hide {
+  display: none;
+}
+
 /* * Dropdown Menu */
 
 .dropdown_menu {

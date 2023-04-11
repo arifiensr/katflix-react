@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import tmdbApi from '../api/tmdbApi'
 import MovieModal from './MovieModal'
+import { GlobalContext } from '../config/GlobalState'
 
 function PopularMovies() {
   const [popularMovies, setPopularMovies] = useState([])
@@ -22,8 +23,6 @@ function PopularMovies() {
   useEffect(() => {
     getData()
   }, [])
-
-  console.log(filmPopular)
 
   const getPopularMovies = async () => {
     const popular = await tmdbApi.get('movie/popular')

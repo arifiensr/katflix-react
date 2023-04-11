@@ -1,9 +1,17 @@
-import { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import SignInModal from './SignInModal'
+import { GlobalContext } from '../config/GlobalState'
 
 function Nav() {
   const [authenticated, setAuthenticated] = useState()
+  const { isLogin, setIsLogin } = useContext(GlobalContext)
+
+  const logOutHandler = () => {
+    localStorage.clear()
+    setIsLogin(false)
+    setAuthenticated('')
+  }
 
   useEffect(() => {
     // * Membuat toggle untuk dropdown menu
@@ -21,7 +29,7 @@ function Nav() {
 
     const authenticate = localStorage.getItem('session_id')
     if (authenticate) setAuthenticated(authenticate)
-    console.log(`Session ID: ${authenticate}`)
+    // console.log(`Session ID: ${authenticate}`)
   }, [])
 
   return (
@@ -50,9 +58,16 @@ function Nav() {
               <NavLink to="/contact/">Contact Us</NavLink>
             </li>
           </ul>
-          <button type="button" className="nav-btn" data-bs-toggle="modal" data-bs-target="#signInModal">
-            Sign In
-          </button>
+          {!isLogin ? (
+            <button id="signInButton" type="button" className="nav-btn" data-bs-toggle="modal" data-bs-target="#signInModal">
+              Sign In
+            </button>
+          ) : (
+            <button id="logOutButton" type="button" className="nav-btn" onClick={() => logOutHandler()}>
+              Logout
+            </button>
+          )}
+
           <div id="toggle-btn" className="toggle-btn">
             <i className="bx bx-menu"></i>
           </div>

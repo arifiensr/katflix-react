@@ -1,13 +1,14 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import tmdbApi from '../api/tmdbApi'
-import { useState, useEffect } from 'react'
-import { Link, redirect } from 'react-router-dom'
+import { useState, useEffect, useContext } from 'react'
+import { GlobalContext } from '../config/GlobalState'
+import { useNavigate } from 'react-router-dom'
 
 function SignInModal() {
   const [authenticated, setAuthenticated] = useState(false)
   const [account, setAccount] = useState([])
-
+  const { isLogin, setIsLogin } = useContext(GlobalContext)
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
   const apiKey = import.meta.env.VITE_TMDB_APIKEY
 
@@ -28,6 +29,8 @@ function SignInModal() {
         const accountData = await tmdbApi.get('account', { params: { session_id: sessionId.data.session_id } })
         setAccount(accountData.data)
         setAuthenticated(sessionId.data.session_id)
+        setIsLogin(true)
+        localStorage.setItem('userLogin', true)
         localStorage.setItem('session_id', sessionId.data.session_id)
       } catch {
         alert('Login error!')
@@ -36,8 +39,7 @@ function SignInModal() {
   })
 
   useEffect(() => {
-
-    
+    if (isLogin) return useNavigate('/')
   }, [])
 
   return (

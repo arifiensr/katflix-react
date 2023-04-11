@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ReactDOM from 'react-dom/client'
-import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
 import Nav from './components/Nav'
@@ -10,7 +10,7 @@ import Genre from './pages/Genre'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'boxicons/css/boxicons.min.css'
 import './index.css'
-import Login from './components/Login'
+import { GlobalProvider } from './config/GlobalState'
 
 const router = createBrowserRouter([
   {
@@ -77,6 +77,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <GlobalProvider>
+      <RouterProvider router={router} />
+    </GlobalProvider>
   </React.StrictMode>
 )
