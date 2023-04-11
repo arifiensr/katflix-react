@@ -11,6 +11,8 @@ function Nav() {
     localStorage.clear()
     setIsLogin(false)
     setAuthenticated('')
+    alert('Logout success!')
+    window.location.reload()
   }
 
   useEffect(() => {
