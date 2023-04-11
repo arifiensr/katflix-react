@@ -6,10 +6,32 @@ function PopularMovies() {
   const [popularMovies, setPopularMovies] = useState([])
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
 
+  const [filmPopular, setFilmPopular] = useState([])
+
+  function getData() {
+    tmdbApi
+      .get('movie/popular')
+      .then((response) => {
+        setFilmPopular(response.data.results)
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
+
+  console.log(filmPopular)
+
   const getPopularMovies = async () => {
     const popular = await tmdbApi.get('movie/popular')
     const combines = popular.data.results.map(async (movie, index) => {
-      const movieDatas = await tmdbApi.get(`movie/${movie.id}`, { params: { append_to_response: 'credits' } })
+      const config = {
+        params: { append_to_response: 'credits' },
+      }
+      const movieDatas = await tmdbApi.get(`movie/${movie.id}`, config)
       const movieVideos = await tmdbApi.get(`movie/${movie.id}/videos`)
       movie = movieDatas.data
       movie.director = movieDatas.data.credits.crew.filter((crew) => crew.job === 'Director')[0].name
@@ -69,7 +91,7 @@ function PopularMovies() {
                 </div>
               </div>
               {/* <!-- Modal --> */}
-              <MovieModal movie={movie} index={index}/>
+              <MovieModal movie={movie} index={index} />
             </div>
           </div>
         )

@@ -36,7 +36,7 @@ function Carousel() {
           {popularMovies.slice(0, 3).map((movie, index) => {
             const style = {
               carouselImage: {
-                backgroundImage: `linear-gradient(to bottom, rgba(255, 0, 0, 0) 50%, var(--color-black-) 100%), url('${baseImgUrl}original${movie.backdrop_path}')`,
+                backgroundImage: `linear-gradient(to bottom, rgba(255, 0, 0, 0) 50%, var(--color-black-) 100%), url('${baseImgUrl}w1280${movie.backdrop_path}')`,
               },
               modalImage: {
                 backgroundImage: `linear-gradient(to bottom, rgba(255, 0, 0, 0) 50%, var(--color-grey-) 100%), url('${baseImgUrl}w1280${movie.backdrop_path}')`,
