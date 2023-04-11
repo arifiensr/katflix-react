@@ -91,9 +91,15 @@ function Nav() {
             <NavLink to="/contact/">Contact Us</NavLink>
           </li>
           <li>
-            <div className="signin" data-bs-toggle="modal" data-bs-target="#signInModal">
-              Sign In
-            </div>
+            {!isLogin ? (
+              <div className="signin" data-bs-toggle="modal" data-bs-target="#signInModal">
+                Sign In
+              </div>
+            ) : (
+              <div className="logout" onClick={() => logOutHandler()}>
+                Logout
+              </div>
+            )}
           </li>
         </div>
       </header>

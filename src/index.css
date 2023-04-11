@@ -123,6 +123,14 @@ li a:hover {
   display: none;
 }
 
+.signInModalBtn {
+  background-color: var(--color-cream-);
+  color: var(--color-black-);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
 /* * Dropdown Menu */
 
 .dropdown_menu {

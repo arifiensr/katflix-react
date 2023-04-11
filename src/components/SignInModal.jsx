@@ -44,7 +44,7 @@ function SignInModal() {
 
   return (
     <>
-      <div className="modal fade z-14" id="signInModal" tabIndex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
+      <div className="modal fade z-14 modal-sm" id="signInModal" tabIndex="-1" aria-labelledby="signInModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
           <div className="modal-content">
             <div className="modal-body d-flex align-items-start">
@@ -66,7 +66,7 @@ function SignInModal() {
                   </>
                 ) : (
                   <>
-                    <form onSubmit={formik.handleSubmit}>
+                    <form onSubmit={formik.handleSubmit} className='d-flex flex-column mt-4'>
                       <div className="mb-3">
                         <label htmlFor="username" className="form-label">
                           Username
@@ -90,7 +90,7 @@ function SignInModal() {
                           Check me out
                         </label>
                       </div>
-                      <button type="submit" className="nav-btn">
+                      <button type="submit" className="signInModalBtn">
                         Sign In
                       </button>
                     </form>
