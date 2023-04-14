@@ -4,13 +4,23 @@ import SignInModal from './SignInModal'
 import { GlobalContext } from '../config/GlobalState'
 
 function Nav() {
-  const [authenticated, setAuthenticated] = useState()
+  // const [authenticated, setAuthenticated] = useState()
   const { isLogin, setIsLogin } = useContext(GlobalContext)
+  const { account, setAccount } = useContext(GlobalContext)
+  const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
+
+  // const account = JSON.parse(localStorage.getItem('account'))
+  // const account = {
+  //   id: localStorage.getItem('accountId'),
+  //   name: localStorage.getItem('accountName'),
+  //   username: localStorage.getItem('accountUsername'),
+  //   avatar_path: localStorage.getItem('accountAvatarPath'),
+  // }
 
   const logOutHandler = () => {
     localStorage.clear()
     setIsLogin(false)
-    setAuthenticated('')
+    setAccount({})
     alert('Logout success!')
     window.location.reload()
   }
@@ -28,10 +38,6 @@ function Nav() {
 
       toggleBtnIcon[0].classList = isOpen ? 'bx bx-x' : 'bx bx-menu'
     }
-
-    const authenticate = localStorage.getItem('session_id')
-    if (authenticate) setAuthenticated(authenticate)
-    // console.log(`Session ID: ${authenticate}`)
   }, [])
 
   return (
@@ -65,9 +71,12 @@ function Nav() {
               Sign In
             </button>
           ) : (
-            <button id="logOutButton" type="button" className="nav-btn" onClick={() => logOutHandler()}>
-              Logout
-            </button>
+            <div id="userButton">
+              <img src={`${baseImgUrl}w45${account.avatar.tmdb.avatar_path}`} alt={account.name} title={account.name} style={{ borderRadius: '50%' }} />
+              <button id="logOutButton" type="button" className="nav-btn" onClick={() => logOutHandler()}>
+                Logout
+              </button>
+            </div>
           )}
 
           <div id="toggle-btn" className="toggle-btn">

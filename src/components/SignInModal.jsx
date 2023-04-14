@@ -1,16 +1,14 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import tmdbApi from '../api/tmdbApi'
-import { useState, useEffect, useContext } from 'react'
+import { useEffect, useContext } from 'react'
 import { GlobalContext } from '../config/GlobalState'
-import { useNavigate } from 'react-router-dom'
 
 function SignInModal() {
-  const [authenticated, setAuthenticated] = useState(false)
-  const [account, setAccount] = useState([])
   const { isLogin, setIsLogin } = useContext(GlobalContext)
+  const { account, setAccount } = useContext(GlobalContext)
+  const { session, setSession } = useContext(GlobalContext)
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
-  const apiKey = import.meta.env.VITE_TMDB_APIKEY
 
   const formik = useFormik({
     initialValues: {
@@ -27,20 +25,19 @@ function SignInModal() {
         await tmdbApi.post('authentication/token/validate_with_login', { username: values.username, password: values.password, request_token: token.data.request_token })
         const sessionId = await tmdbApi.post('authentication/session/new', { request_token: token.data.request_token })
         const accountData = await tmdbApi.get('account', { params: { session_id: sessionId.data.session_id } })
-        setAccount(accountData.data)
-        setAuthenticated(sessionId.data.session_id)
         setIsLogin(true)
+        setAccount(accountData.data)
+        setSession(sessionId.data.session_id)
         localStorage.setItem('userLogin', true)
-        localStorage.setItem('session_id', sessionId.data.session_id)
+        localStorage.setItem('session', JSON.stringify(sessionId.data.session_id))
+        localStorage.setItem('account', JSON.stringify(accountData.data))
       } catch {
         alert('Login error!')
       }
     },
   })
 
-  useEffect(() => {
-    if (isLogin) return useNavigate('/')
-  }, [])
+  useEffect(() => {}, [])
 
   return (
     <>
@@ -52,21 +49,9 @@ function SignInModal() {
                 <i className="bx bx-x"></i>
               </div>
               <div className="modal-desc">
-                {authenticated ? (
+                {!isLogin ? (
                   <>
-                    <h1>Welcome!</h1>
-                    <div>
-                      <img src={`${baseImgUrl}w45${account.avatar.tmdb.avatar_path}`} alt={account.name} title={account.name} style={{ borderRadius: '50%' }} />
-                      <h3>Name: {account.name}</h3>
-                      <h3>Username: {account.username}</h3>
-                      <h3>ID: {account.id}</h3>
-                    </div>
-                    <br />
-                    <div onClick={() => window.location.reload()}>Go to Home</div>
-                  </>
-                ) : (
-                  <>
-                    <form onSubmit={formik.handleSubmit} className='d-flex flex-column mt-4'>
+                    <form onSubmit={formik.handleSubmit} className="d-flex flex-column mt-4">
                       <div className="mb-3">
                         <label htmlFor="username" className="form-label">
                           Username
@@ -94,6 +79,18 @@ function SignInModal() {
                         Sign In
                       </button>
                     </form>
+                  </>
+                ) : (
+                  <>
+                    <h1>Welcome!</h1>
+                    <div>
+                      <img src={`${baseImgUrl}w45${account.avatar.tmdb.avatar_path}`} alt={account.name} title={account.name} style={{ borderRadius: '50%' }} />
+                      <h3>Name: {account.name}</h3>
+                      <h3>Username: {account.username}</h3>
+                      <h3>ID: {account.id}</h3>
+                    </div>
+                    <br />
+                    <div onClick={() => window.location.reload()}>Go to Home</div>
                   </>
                 )}
               </div>

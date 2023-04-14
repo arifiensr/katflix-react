@@ -29,7 +29,6 @@ export default axios.create({
   }
 })
 
-
 export const popularApi = axios.create({
   baseURL: "https://api.themoviedb.org/3",
   headers: {
