@@ -67,12 +67,6 @@ function SignInModal() {
                         <input type="password" className="form-control" id="password" onChange={formik.handleChange} value={formik.values.password} />
                         {formik.touched.password && formik.errors.password ? <div>{formik.errors.password}</div> : null}
                       </div>
-                      <div className="mb-3 form-check">
-                        <input type="checkbox" className="form-check-input" id="checkbox" />
-                        <label className="form-check-label" htmlFor="checkbox">
-                          Check me out
-                        </label>
-                      </div>
                       <button type="submit" className="signInModalBtn">
                         Sign In
                       </button>

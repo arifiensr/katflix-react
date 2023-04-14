@@ -30,6 +30,22 @@ function Nav() {
     }
   }, [])
 
+  useEffect(() => {
+    // * Membuat toggle untuk user dropdown menu
+
+    if (isLogin) {
+      const userButton = document.querySelector('#user-button')
+      const userArrow = document.querySelector('#user-button i')
+      const userDropdown = document.querySelector('#user-dropdown')
+
+      userButton.onclick = () => {
+        userDropdown.classList.toggle('open')
+        const isOpen = userDropdown.classList.contains('open')
+        userArrow.style.rotate = isOpen ? '180deg' : '0deg'
+      }
+    }
+  }, [isLogin])
+
   return (
     <>
       <header>
@@ -61,20 +77,24 @@ function Nav() {
               Sign In
             </button>
           ) : (
-            <div id="userButton" className="d-flex gap-2 justify-content-between align-items-center">
+            <div id="user-button">
               <img src={`${baseImgUrl}w45${account.avatar.tmdb.avatar_path}`} alt={account.name} title={account.name} style={{ borderRadius: '50%', width: 35, height: 'auto' }} />
-              <i class="bx bxs-down-arrow"></i>
+              <i className="bx bxs-down-arrow"></i>
               <div id="user-dropdown">
-                <ul className="d-flex flex-column gap-2 justify-content-between ">
-                  <li>
-                    <NavLink to="#">Profile</NavLink>
-                  </li>
-                  <li>
-                    <button id="logOutButton" type="button" className="nav-btn" onClick={() => logOutHandler()}>
-                      Logout
-                    </button>
-                  </li>
-                </ul>
+                <li>
+                  Name: {account.name}
+                </li>
+                <li>
+                  ID: {account.id}
+                </li>
+                <li>
+                  Username: {account.username}
+                </li>
+                <li>
+                  <button id="logOutButton" type="button" className="nav-btn" onClick={() => logOutHandler()}>
+                    Logout
+                  </button>
+                </li>
               </div>
             </div>
           )}
@@ -99,7 +119,7 @@ function Nav() {
           <li>
             <NavLink to="/contact/">Contact Us</NavLink>
           </li>
-          <li>
+          {/* <li>
             {!isLogin ? (
               <div className="signin" data-bs-toggle="modal" data-bs-target="#signInModal">
                 Sign In
@@ -109,7 +129,16 @@ function Nav() {
                 Logout
               </div>
             )}
-          </li>
+          </li> */}
+          {!isLogin ? (
+              <li className="signin" data-bs-toggle="modal" data-bs-target="#signInModal">
+                Sign In
+              </li>
+            ) : (
+              <li className="logout" onClick={() => logOutHandler()}>
+                Logout
+              </li>
+            )}
         </div>
       </header>
 

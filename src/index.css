@@ -115,8 +115,12 @@ li a:hover {
   display: none;
 }
 
-.signin {
+.signin, .logout {
   cursor: pointer;
+}
+
+.signin:hover, .logout:hover {
+  color: var(--color-cream-);
 }
 
 .hide {
@@ -131,31 +135,28 @@ li a:hover {
   font-weight: 600;
 }
 
-#userButton {
-  position: relative;
+#user-button {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
 
-#userButton i {
+#user-button i {
+  font-size: 0.7rem;
   transition: all 0.2s;
-}
-
-#userButton:hover {
-  /* height: 300px; */
-}
-
-#userButton:hover i {
-  rotate: 180deg;
-}
-
-#userButton:hover #user-dropdown {
-  height: 100px;
 }
 
 #user-dropdown {
   z-index: 12;
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   right: 0rem;
-  top: 35px;
+  top: 60px;
   height: 0;
   width: 200px;
   background-color: var(--color-black-);
@@ -163,6 +164,10 @@ li a:hover {
   border-radius: 10px;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#user-dropdown.open {
+  height: 150px;
 }
 
 /* * Dropdown Menu */
@@ -917,7 +922,7 @@ body > nav > ol > li.breadcrumb-item.active {
 
 @media (max-width: 992px) {
   .nav-links,
-  .nav-btn, #user-dropdown {
+  .nav-btn, #user-button {
     display: none;
   }
 

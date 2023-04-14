@@ -13,7 +13,7 @@ export const GlobalProvider = ({ children }) => {
       setAccount(JSON.parse(localStorage.getItem('account')))
       setSession(JSON.parse(localStorage.getItem('session')))
     }
-  }, [])
+  }, [isLogin])
 
   const GlobalState = { isLogin, setIsLogin, account, setAccount, session, setSession }
   return <GlobalContext.Provider value={GlobalState}>{children}</GlobalContext.Provider>
