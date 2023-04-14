@@ -61,11 +61,21 @@ function Nav() {
               Sign In
             </button>
           ) : (
-            <div id="userButton">
-              <img src={`${baseImgUrl}w45${account.avatar.tmdb.avatar_path}`} alt={account.name} title={account.name} style={{ borderRadius: '50%' }} />
-              <button id="logOutButton" type="button" className="nav-btn" onClick={() => logOutHandler()}>
-                Logout
-              </button>
+            <div id="userButton" className="d-flex gap-2 justify-content-between align-items-center">
+              <img src={`${baseImgUrl}w45${account.avatar.tmdb.avatar_path}`} alt={account.name} title={account.name} style={{ borderRadius: '50%', width: 35, height: 'auto' }} />
+              <i class="bx bxs-down-arrow"></i>
+              <div id="user-dropdown">
+                <ul className="d-flex flex-column gap-2 justify-content-between ">
+                  <li>
+                    <NavLink to="#">Profile</NavLink>
+                  </li>
+                  <li>
+                    <button id="logOutButton" type="button" className="nav-btn" onClick={() => logOutHandler()}>
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           )}
 

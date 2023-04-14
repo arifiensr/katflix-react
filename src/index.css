@@ -131,6 +131,40 @@ li a:hover {
   font-weight: 600;
 }
 
+#userButton {
+  position: relative;
+}
+
+#userButton i {
+  transition: all 0.2s;
+}
+
+#userButton:hover {
+  /* height: 300px; */
+}
+
+#userButton:hover i {
+  rotate: 180deg;
+}
+
+#userButton:hover #user-dropdown {
+  height: 100px;
+}
+
+#user-dropdown {
+  z-index: 12;
+  position: absolute;
+  right: 0rem;
+  top: 35px;
+  height: 0;
+  width: 200px;
+  background-color: var(--color-black-);
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
 /* * Dropdown Menu */
 
 .dropdown_menu {
@@ -883,7 +917,7 @@ body > nav > ol > li.breadcrumb-item.active {
 
 @media (max-width: 992px) {
   .nav-links,
-  .nav-btn {
+  .nav-btn, #user-dropdown {
     display: none;
   }
 
