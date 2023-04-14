@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import SignInModal from './SignInModal'
 import { GlobalContext } from '../config/GlobalState'
+import tmdbApi from '../api/tmdbApi'
 
 function Nav() {
   const { isLogin, setIsLogin, account, setAccount, session, setSession } = useContext(GlobalContext)
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
 
-  const logOutHandler = () => {
+  const logOutHandler = async () => {
+    await tmdbApi.delete('authentication/session', { data: { session_id: session } })
     localStorage.clear()
     setIsLogin(false)
     setAccount({})
@@ -81,15 +83,9 @@ function Nav() {
               <img src={`${baseImgUrl}w45${account.avatar.tmdb.avatar_path}`} alt={account.name} title={account.name} style={{ borderRadius: '50%', width: 35, height: 'auto' }} />
               <i className="bx bxs-down-arrow"></i>
               <div id="user-dropdown">
-                <li>
-                  Name: {account.name}
-                </li>
-                <li>
-                  ID: {account.id}
-                </li>
-                <li>
-                  Username: {account.username}
-                </li>
+                <li>Name: {account.name}</li>
+                <li>ID: {account.id}</li>
+                <li>Username: {account.username}</li>
                 <li>
                   <button id="logOutButton" type="button" className="nav-btn" onClick={() => logOutHandler()}>
                     Logout
@@ -131,14 +127,14 @@ function Nav() {
             )}
           </li> */}
           {!isLogin ? (
-              <li className="signin" data-bs-toggle="modal" data-bs-target="#signInModal">
-                Sign In
-              </li>
-            ) : (
-              <li className="logout" onClick={() => logOutHandler()}>
-                Logout
-              </li>
-            )}
+            <li className="signin" data-bs-toggle="modal" data-bs-target="#signInModal">
+              Sign In
+            </li>
+          ) : (
+            <li className="logout" onClick={() => logOutHandler()}>
+              Logout
+            </li>
+          )}
         </div>
       </header>
 

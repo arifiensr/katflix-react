@@ -7,23 +7,6 @@ function PopularMovies() {
   const [popularMovies, setPopularMovies] = useState([])
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
 
-  const [filmPopular, setFilmPopular] = useState([])
-
-  function getData() {
-    tmdbApi
-      .get('movie/popular')
-      .then((response) => {
-        setFilmPopular(response.data.results)
-      })
-      .catch((err) => {
-        console.log(err.message)
-      })
-  }
-
-  useEffect(() => {
-    getData()
-  }, [])
-
   const getPopularMovies = async () => {
     const popular = await tmdbApi.get('movie/popular')
     const combines = popular.data.results.map(async (movie, index) => {
