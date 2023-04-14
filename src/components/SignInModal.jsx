@@ -5,9 +5,7 @@ import { useEffect, useContext } from 'react'
 import { GlobalContext } from '../config/GlobalState'
 
 function SignInModal() {
-  const { isLogin, setIsLogin } = useContext(GlobalContext)
-  const { account, setAccount } = useContext(GlobalContext)
-  const { session, setSession } = useContext(GlobalContext)
+  const { isLogin, setIsLogin, account, setAccount, session, setSession } = useContext(GlobalContext)
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
 
   const formik = useFormik({
@@ -89,8 +87,6 @@ function SignInModal() {
                       <h3>Username: {account.username}</h3>
                       <h3>ID: {account.id}</h3>
                     </div>
-                    <br />
-                    <div onClick={() => window.location.reload()}>Go to Home</div>
                   </>
                 )}
               </div>

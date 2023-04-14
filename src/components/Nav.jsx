@@ -4,25 +4,15 @@ import SignInModal from './SignInModal'
 import { GlobalContext } from '../config/GlobalState'
 
 function Nav() {
-  // const [authenticated, setAuthenticated] = useState()
-  const { isLogin, setIsLogin } = useContext(GlobalContext)
-  const { account, setAccount } = useContext(GlobalContext)
+  const { isLogin, setIsLogin, account, setAccount, session, setSession } = useContext(GlobalContext)
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
-
-  // const account = JSON.parse(localStorage.getItem('account'))
-  // const account = {
-  //   id: localStorage.getItem('accountId'),
-  //   name: localStorage.getItem('accountName'),
-  //   username: localStorage.getItem('accountUsername'),
-  //   avatar_path: localStorage.getItem('accountAvatarPath'),
-  // }
 
   const logOutHandler = () => {
     localStorage.clear()
     setIsLogin(false)
     setAccount({})
+    setSession('')
     alert('Logout success!')
-    window.location.reload()
   }
 
   useEffect(() => {
