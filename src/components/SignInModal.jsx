@@ -56,9 +56,6 @@ function SignInModal() {
                         </label>
                         <input type="text" className="form-control" id="username" aria-describedby="usernameHelp" onChange={formik.handleChange} value={formik.values.username} />
                         {formik.touched.username && formik.errors.username ? <div>{formik.errors.username}</div> : null}
-                        <div id="usernameHelp" className="form-text">
-                          We'll never share your username with anyone else.
-                        </div>
                       </div>
                       <div className="mb-3">
                         <label htmlFor="password" className="form-label">
@@ -70,6 +67,14 @@ function SignInModal() {
                       <button type="submit" className="signInModalBtn">
                         Sign In
                       </button>
+                      <div id="usernameHelp" className="form-text">
+                        <br />
+                        Try this account
+                        <br />
+                        Username: katflix.id
+                        <br />
+                        Password: Katflix123
+                      </div>
                     </form>
                   </>
                 ) : (
