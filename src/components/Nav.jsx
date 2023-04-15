@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import SignInModal from './SignInModal'
 import { GlobalContext } from '../config/GlobalState'
 import tmdbApi from '../api/tmdbApi'
@@ -7,6 +7,7 @@ import tmdbApi from '../api/tmdbApi'
 function Nav() {
   const { isLogin, setIsLogin, account, setAccount, session, setSession } = useContext(GlobalContext)
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
+  const navigate = useNavigate()
 
   const logOutHandler = async () => {
     await tmdbApi.delete('authentication/session', { data: { session_id: session } })
@@ -15,6 +16,7 @@ function Nav() {
     setAccount({})
     setSession('')
     alert('Logout success!')
+    navigate('/')
   }
 
   useEffect(() => {
