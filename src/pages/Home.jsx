@@ -1,8 +1,6 @@
 import BootstrapAlert from '../components/BootstrapAlert'
-import CardTest from '../components/CardTest'
 import Carousel from '../components/Carousel'
 import Footer from '../components/Footer'
-import FooterTest from '../components/FooterTest'
 import LargeCard from '../components/LargeCard'
 import Nav from '../components/Nav'
 import SmallCard from '../components/SmallCard'
@@ -20,8 +18,6 @@ function Home() {
         <SmallCard2 />
       </div>
       <Footer />
-      {/* <FooterTest/> */}
-      {/* <CardTest/> */}
     </>
   )
 }

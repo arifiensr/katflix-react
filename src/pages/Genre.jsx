@@ -1,4 +1,5 @@
 import Nav from '../components/Nav'
+import Footer from '../components/Footer'
 
 function Genre() {
   return (
@@ -10,6 +11,7 @@ function Genre() {
       <br />
       <br />
       <h1 className='mt-5'>PAGE IN PROGRESS</h1>
+      <Footer />
     </>
   )
 }

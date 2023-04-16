@@ -1,7 +1,3 @@
-import carouselTitle1 from '../assets/img/carousel/luther.png'
-import carouselTitle2 from '../assets/img/carousel/last.png'
-import carouselTitle3 from '../assets/img/carousel/dead.png'
-
 import { useState, useEffect } from 'react'
 import tmdbApi from '../api/tmdbApi'
 import MovieModal from './MovieModal'
