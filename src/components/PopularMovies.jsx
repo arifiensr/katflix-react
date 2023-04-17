@@ -24,6 +24,13 @@ function PopularMovies() {
     setPopularMovies(results)
   }
 
+  function handleImgError() {
+    {
+      this.onerror = null
+      this.src = 'https://plasticheal.dk/images/slider-placeholder380X412.png'
+    }
+  }
+
   useEffect(() => {
     getPopularMovies()
   }, [])
@@ -37,7 +44,14 @@ function PopularMovies() {
             <div className="card-lg-1">
               <div className="card bg-dark" data-bs-toggle="modal" data-bs-target={`#modal${movie.id}`}>
                 <div className="poster">
-                  <img src={`${baseImgUrl}w500${movie.poster_path}`} alt="" />
+                  <img
+                    src={`${baseImgUrl}w500${movie.poster_path}`}
+                    alt=""
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null
+                      currentTarget.src = 'https://plasticheal.dk/images/slider-placeholder380X412.png'
+                    }}
+                  />
                 </div>
                 <div className="details">
                   <h2 className="title">{movie.title}</h2>

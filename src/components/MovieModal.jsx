@@ -1,4 +1,4 @@
-function MovieModal({movie, index}) {
+function MovieModal({ movie, index }) {
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
 
   const ratingStars = [1, 2, 3, 4, 5]
@@ -17,10 +17,22 @@ function MovieModal({movie, index}) {
             </div>
             <div className="modal-body d-flex align-items-start">
               <div className="modal-poster">
-                <img src={`${baseImgUrl}w342${movie.poster_path}`} alt="" />
+                <img
+                  src={`${baseImgUrl}w342${movie.poster_path}`}
+                  alt=""
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null
+                    currentTarget.src = 'https://plasticheal.dk/images/slider-placeholder380X412.png'
+                  }}
+                />
               </div>
               <div className="modal-desc">
-                <h2 className="title">{movie.title === undefined ? movie.name : movie.title} <sup><em>(ID: {movie.id})</em></sup></h2>
+                <h2 className="title">
+                  {movie.title === undefined ? movie.name : movie.title}{' '}
+                  <sup>
+                    <em>(ID: {movie.id})</em>
+                  </sup>
+                </h2>
                 <h3>Directed by {movie.director}</h3>
                 <div className="rating">
                   {ratingStars.map((star, index) => {

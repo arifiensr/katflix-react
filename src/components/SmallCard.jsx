@@ -40,7 +40,16 @@ function SmallCard() {
               <div key={index}>
                 {/* Card */}
                 <div className="cardTest" data-bs-toggle="modal" data-bs-target={`#modal${movie.id}`}>
-                  <img className="w-100 h-100 object-fit-cover" src={`${baseImgUrl}w185${movie.poster_path}`} alt={movie.original_title} title={movie.original_title} />
+                  <img
+                    className="w-100 h-100 object-fit-cover"
+                    src={`${baseImgUrl}w185${movie.poster_path}`}
+                    alt={movie.original_title}
+                    title={movie.original_title}
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null
+                      currentTarget.src = 'https://plasticheal.dk/images/slider-placeholder380X412.png'
+                    }}
+                  />
                 </div>
                 {/* Modal */}
                 <MovieModal movie={movie} index={index} />
