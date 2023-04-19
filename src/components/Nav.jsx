@@ -69,9 +69,9 @@ function Nav() {
             <li>
               <NavLink to="/movies/">Movies</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/genre/">Genre</NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/contact/">Contact Us</NavLink>
             </li>
@@ -111,9 +111,9 @@ function Nav() {
           <li>
             <NavLink to="/movies/">Movies</NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/genre/">Genre</NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink to="/contact/">Contact Us</NavLink>
           </li>

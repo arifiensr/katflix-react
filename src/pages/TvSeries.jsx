@@ -1,16 +1,12 @@
 import Footer from '../components/Footer'
 import Nav from '../components/Nav'
+import SmallCard2 from '../components/SmallCard2'
 
 function TvSeries() {
   return (
     <>
       <Nav />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <h1 className='mt-5'>PAGE IN PROGRESS</h1>
+      <SmallCard2 />
       <Footer />
     </>
   )
