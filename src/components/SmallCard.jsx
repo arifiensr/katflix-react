@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react'
 import tmdbApi from '../api/tmdbApi'
 import MovieModal from './MovieModal'
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
 
 function SmallCard() {
   const [topRatedMovies, setTopRatedMovies] = useState([])
@@ -28,18 +35,20 @@ function SmallCard() {
       <div className="genre">
         <div className="d-flex justify-content-between align-items-center p-4 pb-0 mb-0">
           <h5>
-            <a href="#">Top Rated Movies</a>
+            <a className='card-header' href="/movies/">Top Rated Movies</a>
           </h5>
           <h5>
-            <a href="#">More</a>
+            <a className='card-header' href="/movies/">More</a>
           </h5>
         </div>
         <div className="cardWrapper d-flex justify-content-around align-items-center flex-wrap ms-3 me-3 gap-3">
+          {/* <Swiper modules={[Navigation, Pagination, Scrollbar, A11y]} spaceBetween={50} slidesPerView={9} navigation pagination={{ clickable: true }} scrollbar={{ draggable: true }} onSwiper={(swiper) => console.log(swiper)} onSlideChange={() => console.log('slide change')}> */}
           {topRatedMovies.slice(0, 18).map((movie, index) => {
             return (
               <div key={index}>
                 {/* Card */}
-                <div className="cardTest" data-bs-toggle="modal" data-bs-target={`#modal${movie.id}`}>
+                {/* <SwiperSlide data-bs-toggle="modal" data-bs-target={`#modal${movie.id}`}> */}
+                <div className="cardTest">
                   <img
                     className="w-100 h-100 object-fit-cover"
                     src={`${baseImgUrl}w185${movie.poster_path}`}
@@ -51,11 +60,13 @@ function SmallCard() {
                     }}
                   />
                 </div>
+                {/* </SwiperSlide> */}
                 {/* Modal */}
                 <MovieModal movie={movie} index={index} />
               </div>
             )
           })}
+          {/* </Swiper> */}
         </div>
       </div>
 

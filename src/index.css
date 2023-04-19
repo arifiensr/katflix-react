@@ -115,11 +115,13 @@ li a:hover {
   display: none;
 }
 
-.signin, .logout {
+.signin,
+.logout {
   cursor: pointer;
 }
 
-.signin:hover, .logout:hover {
+.signin:hover,
+.logout:hover {
   color: var(--color-cream-);
 }
 
@@ -455,6 +457,10 @@ li a:hover {
 .imdb-p {
   padding-left: 7px;
   font-size: 19px;
+}
+
+.card-header:hover {
+  color: var(--color-cream-);
 }
 
 /* * Cards End */
@@ -922,7 +928,8 @@ body > nav > ol > li.breadcrumb-item.active {
 
 @media (max-width: 992px) {
   .nav-links,
-  .nav-btn, #user-button {
+  .nav-btn,
+  #user-button {
     display: none;
   }
 

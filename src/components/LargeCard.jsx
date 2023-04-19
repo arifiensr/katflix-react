@@ -5,10 +5,14 @@ function LargeCard() {
     <>
       <div className="d-flex justify-content-between align-items-center p-4 pb-0 mb-0">
         <h5>
-          <a href="#">Popular Movies</a>
+          <a className="card-header" href="/movies/">
+            Popular Movies
+          </a>
         </h5>
         <h5>
-          <a href="#">More</a>
+          <a className="card-header" href="/movies/">
+            More
+          </a>
         </h5>
       </div>
       {/* <!-- * Cards Start --> */}

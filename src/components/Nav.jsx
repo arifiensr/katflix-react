@@ -55,9 +55,7 @@ function Nav() {
       <header>
         <nav className="header-nav">
           <div className="logo">
-            <NavLink to="/">
-              <span className="logo-kat">KAT</span>FLIX <i className="bx bxs-cat bx-fade-left cat-logo"></i>
-            </NavLink>
+            <span className="logo-kat">KAT</span>FLIX <i className="bx bxs-cat bx-fade-left cat-logo"></i>
           </div>
           <ul className="nav-links">
             <li>

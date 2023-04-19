@@ -6,7 +6,9 @@ function Movies() {
   return (
     <>
       <Nav />
-      <SmallCard />
+      <div className="mt-2">
+        <SmallCard />
+      </div>
       <Footer />
     </>
   )

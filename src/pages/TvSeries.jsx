@@ -6,7 +6,9 @@ function TvSeries() {
   return (
     <>
       <Nav />
-      <SmallCard2 />
+      <div className="mt-2">
+        <SmallCard2 />
+      </div>
       <Footer />
     </>
   )

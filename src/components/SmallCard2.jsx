@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import tmdbApi from '../api/tmdbApi'
 import MovieModal from './MovieModal'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 function SmallCard2() {
   const [popularTVs, setPopularTVs] = useState([])
@@ -29,17 +30,23 @@ function SmallCard2() {
       <div className="genre">
         <div className="d-flex justify-content-between align-items-center p-4 pb-0 mb-0">
           <h5>
-            <a href="#">Popular TV Series</a>
+            <a className="card-header" href="/tvseries/">
+              Popular TV Series
+            </a>
           </h5>
           <h5>
-            <a href="#">More</a>
+            <a className="card-header" href="/tvseries/">
+              More
+            </a>
           </h5>
         </div>
         <div className="cardWrapper d-flex justify-content-around align-items-center flex-wrap ms-3 me-3 gap-3">
+          {/* <Swiper spaceBetween={50} slidesPerView={9} onSlideChange={() => console.log('slide change')} onSwiper={(swiper) => console.log(swiper)}> */}
           {popularTVs.slice(0, 18).map((movie, index) => {
             return (
               <div key={index}>
                 {/* Card */}
+                {/* <SwiperSlide> */}
                 <div className="cardTest" data-bs-toggle="modal" data-bs-target={`#modal${movie.id}`}>
                   <img
                     className="w-100 h-100 object-fit-cover"
@@ -52,11 +59,14 @@ function SmallCard2() {
                     }}
                   />
                 </div>
+                {/* </SwiperSlide> */}
+
                 {/* Modal */}
                 <MovieModal movie={movie} index={index} />
               </div>
             )
           })}
+          {/* </Swiper> */}
         </div>
       </div>
     </>
