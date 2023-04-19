@@ -64,10 +64,10 @@ function Nav() {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/tvseries/">TV Series</NavLink>
+              <NavLink to="/movies/">Movies</NavLink>
             </li>
             <li>
-              <NavLink to="/movies/">Movies</NavLink>
+              <NavLink to="/tvseries/">TV Series</NavLink>
             </li>
             {/* <li>
               <NavLink to="/genre/">Genre</NavLink>
@@ -106,10 +106,10 @@ function Nav() {
             <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <NavLink to="/tvseries/">TV Series</NavLink>
+            <NavLink to="/movies/">Movies</NavLink>
           </li>
           <li>
-            <NavLink to="/movies/">Movies</NavLink>
+            <NavLink to="/tvseries/">TV Series</NavLink>
           </li>
           {/* <li>
             <NavLink to="/genre/">Genre</NavLink>
