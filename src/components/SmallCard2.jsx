@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import tmdbApi from '../api/tmdbApi'
 import MovieModal from './MovieModal'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import Delay from '../utils/Delay'
+import loadingGif from '../assets/img/loading.gif'
 
 function SmallCard2() {
   const [popularTVs, setPopularTVs] = useState([])
   const baseImgUrl = import.meta.env.VITE_TMDB_BASEIMGURL
 
   const getPopularTVs = async () => {
+    await Delay(0)
     const popularTV = await tmdbApi.get('tv/popular')
     const combines = popularTV.data.results.map(async (movie, index) => {
       const movieDatas = await tmdbApi.get(`tv/${movie.id}`, { params: { append_to_response: 'credits' } })
@@ -27,48 +29,49 @@ function SmallCard2() {
   }, [])
   return (
     <>
-      <div className="genre">
-        <div className="d-flex justify-content-between align-items-center p-4 pb-0 mb-0">
-          <h5>
-            <a className="card-header" href="/tvseries/">
-              Popular TV Series
-            </a>
-          </h5>
-          <h5>
-            <a className="card-header" href="/tvseries/">
-              More
-            </a>
-          </h5>
+      {popularTVs.length === 0 ? (
+        <div className="d-flex justify-content-center">
+          <img src={loadingGif} style={{ width: 50, height: 50, margin: 60 }} />
         </div>
-        <div className="cardWrapper d-flex justify-content-around align-items-center flex-wrap ms-3 me-3 gap-3">
-          {/* <Swiper spaceBetween={50} slidesPerView={9} onSlideChange={() => console.log('slide change')} onSwiper={(swiper) => console.log(swiper)}> */}
-          {popularTVs.slice(0, 18).map((movie, index) => {
-            return (
-              <div key={index}>
-                {/* Card */}
-                {/* <SwiperSlide> */}
-                <div className="cardTest" data-bs-toggle="modal" data-bs-target={`#modal${movie.id}`}>
-                  <img
-                    className="w-100 h-100 object-fit-cover"
-                    src={`${baseImgUrl}w185${movie.poster_path}`}
-                    alt={movie.original_title}
-                    title={movie.original_title}
-                    onError={({ currentTarget }) => {
-                      currentTarget.onerror = null
-                      currentTarget.src = 'https://plasticheal.dk/images/slider-placeholder380X412.png'
-                    }}
-                  />
+      ) : (
+        <div className="genre">
+          <div className="d-flex justify-content-between align-items-center p-4 pb-0 mb-0">
+            <h5>
+              <a className="card-header" href="/tvseries/">
+                Popular TV Series
+              </a>
+            </h5>
+            <h5>
+              <a className="card-header" href="/tvseries/">
+                More
+              </a>
+            </h5>
+          </div>
+          <div className="cardWrapper d-flex justify-content-around align-items-center flex-wrap ms-3 me-3 gap-3">
+            {popularTVs.slice(0, 18).map((movie, index) => {
+              return (
+                <div key={index}>
+                  {/* Card */}
+                  <div className="cardTest" data-bs-toggle="modal" data-bs-target={`#modal${movie.id}`}>
+                    <img
+                      className="w-100 h-100 object-fit-cover"
+                      src={`${baseImgUrl}w185${movie.poster_path}`}
+                      alt={movie.original_title}
+                      title={movie.original_title}
+                      onError={({ currentTarget }) => {
+                        currentTarget.onerror = null
+                        currentTarget.src = 'https://plasticheal.dk/images/slider-placeholder380X412.png'
+                      }}
+                    />
+                  </div>
+                  {/* Modal */}
+                  <MovieModal movie={movie} index={index} />
                 </div>
-                {/* </SwiperSlide> */}
-
-                {/* Modal */}
-                <MovieModal movie={movie} index={index} />
-              </div>
-            )
-          })}
-          {/* </Swiper> */}
+              )
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </>
   )
 }
