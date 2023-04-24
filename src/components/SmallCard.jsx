@@ -33,11 +33,7 @@ function SmallCard() {
   }, [])
   return (
     <>
-      {topRatedMovies.length === 0 ? (
-        <div className="d-flex justify-content-center">
-          <img src={loadingGif} style={{ width: 50, height: 50, margin: 60 }} />
-        </div>
-      ) : (
+      {topRatedMovies.length ? (
         <div className="genre">
           <div className="d-flex justify-content-between align-items-center p-4 pb-0 mb-0">
             <h5>
@@ -74,6 +70,10 @@ function SmallCard() {
               )
             })}
           </div>
+        </div>
+      ) : (
+        <div className="d-flex justify-content-center">
+          <img src={loadingGif} style={{ width: 50, height: 50, margin: 60 }} />
         </div>
       )}
     </>
