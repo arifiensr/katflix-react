@@ -52,7 +52,7 @@ function SmallCard() {
               return (
                 <div key={index}>
                   {/* Card */}
-                  <div className="cardTest">
+                  <div className="cardTest" data-bs-toggle="modal" data-bs-target={`#modal${movie.id}`}>
                     <img
                       className="w-100 h-100 object-fit-cover"
                       src={`${baseImgUrl}w185${movie.poster_path}`}
