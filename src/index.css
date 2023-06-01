@@ -878,6 +878,10 @@ li a:hover {
   cursor: pointer;
 }
 
+.footerlink:hover {
+  color: var(--color-cream-);
+}
+
 .footericon {
   margin: 0;
   font-size: larger;

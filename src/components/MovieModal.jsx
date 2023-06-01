@@ -27,12 +27,7 @@ function MovieModal({ movie, index }) {
                 />
               </div>
               <div className="modal-desc">
-                <h2 className="title">
-                  {movie.title === undefined ? movie.name : movie.title}{' '}
-                  <sup>
-                    <em>(ID: {movie.id})</em>
-                  </sup>
-                </h2>
+                <h2 className="title">{movie.title === undefined ? movie.name : movie.title} </h2>
                 <h3>Directed by {movie.director}</h3>
                 <div className="rating">
                   {ratingStars.map((star, index) => {
